@@ -1,4 +1,4 @@
-import type { IBook } from '../types/books';
+import type { IBook } from '../types/book.types';
 export const mockBooks: IBook[] = [
 {
 id: '1',
@@ -16,7 +16,7 @@ author: 'Лев Толстой',
 year: 1869,
 genre: 'Эпопея',
 isAvailable: true,
-description: 'Масштабное произведение о русском обществе в эпоху наполеоновских войн.
+description: 'Масштабное произведение о русском обществе в эпоху наполеоновских войн.'
 },
 {
 id: '3',

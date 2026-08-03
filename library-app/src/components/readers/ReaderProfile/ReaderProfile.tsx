@@ -1,12 +1,12 @@
-import Layout from '../../components/common/Layout/Layout';
-import ReaderProfile from '../../components/readers/ReaderProfile/ReaderProfile';
-import { mockReaders } from '../../mocks/readers';
-import '../../styles/profile.css';
-const ReaderProfilePage = () => {
-// Для демонстрации берем первого читателя
-const reader = mockReaders[0];
-return (
-<ReaderProfile reader={reader} />
-);
+import ReaderProfilePage from '../../../pages/ReaderProfilePage/ReaderProfilePage';
+import { mockReaders } from '../../../mocks/readers';
+import '../../../styles/profile.css';
+
+// Создаем компонент с ДРУГИМ именем (например, ProfileContainer или App)
+const ProfileWrapper = () => {
+  return (
+    <ReaderProfilePage />
+  );
 };
-export default ReaderProfilePage;
+
+export default ProfileWrapper;
