@@ -2,10 +2,10 @@ import ReaderProfilePage from '../../../pages/ReaderProfilePage/ReaderProfilePag
 import { mockReaders } from '../../../mocks/readers';
 import '../../../styles/profile.css';
 
-// Создаем компонент с ДРУГИМ именем (например, ProfileContainer или App)
 const ProfileWrapper = () => {
+  const currentReader = mockReaders[0];
   return (
-    <ReaderProfilePage />
+    <ReaderProfilePage reader={currentReader} />
   );
 };
 

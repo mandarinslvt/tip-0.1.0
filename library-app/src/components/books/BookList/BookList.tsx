@@ -1,11 +1,11 @@
-import type { IBook } from '../../../types/books'; 
+import type { IBook } from '../../../types/book.types'
 import BookCard from '../BookCard/BookCard'; 
 
 interface BookListProps { 
-  books: IBook[]; 
+  books?: IBook[]; 
 } 
 
-const BookList = ({ books }: BookListProps) => { 
+const BookList = ({ books = [] }: BookListProps) => { 
   if (books.length === 0) { 
     return ( 
       <div className="empty-state"> 

@@ -1,13 +1,20 @@
-import ReaderProfile from '../../components/readers/ReaderProfile/ReaderProfile';
+import ReaderProfileWrapper from '../../components/readers/ReaderProfile/ReaderProfileWrapper';
 import { mockReaders } from '../../mocks/readers';
+import type { IReader } from '../../types/reader.types';
 import '../ReaderProfilePage/ReaderProfilePage.css';
 import '../../styles/profile.css';
 
-const ReaderProfilePage = () => {
-  const reader = mockReaders[0];
+interface ReaderProfilePageProps {
+  reader: IReader;
+}
 
+const ReaderProfilePage = ({reader}: ReaderProfilePageProps) => {
   return (
-    <ReaderProfile reader = {reader} />
+    <div className="profile">
+      <h1> Profile: {reader?.fullName}</h1>
+      <p>Email: {reader?.email}</p>
+      <p>Телефон: {reader?.phone}</p>
+    </div>
   );
 };
 

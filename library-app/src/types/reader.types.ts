@@ -3,6 +3,7 @@ export interface IBookHistory {
     takenAt: Date;
     returnedAt?: Date;
 }
+
 export interface IReader {
     id: string;
     fullName: string;

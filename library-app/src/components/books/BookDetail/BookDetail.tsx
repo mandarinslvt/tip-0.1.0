@@ -1,4 +1,4 @@
-import type { IBook } from '../../types/books';
+import type { IBook } from '../../../types/book.types';
 
 interface BookDetailInfoProps {
   book: IBook;
@@ -15,6 +15,7 @@ const BookDetailInfo = ({ book }: BookDetailInfoProps) => {
       </div>
       <div className="book-detail-description">
         <h4>О книге</h4>
+        
         <p>{book.description}</p>
       </div>
     </div>

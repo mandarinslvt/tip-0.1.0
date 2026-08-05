@@ -1,12 +1,13 @@
-import type { IBook } from '../../../types/books';
+import type { IBook } from '../../../types/book.types';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface BookCardProps {
-  book: Book;
-  onDetailClick?: (book: Book) => void;
+  book: IBook;
+  onDetailClick?: (book: IBook) => void;
 }
 
-export const BookCard: React.FC<BookCardProps> = ({ book, onDetailClick }) => {
+const BookCard: React.FC<BookCardProps> = ({ book, onDetailClick }) => {
   const { title, author, year, genre, description, isAvailable } = book;
   
   return (
@@ -19,6 +20,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onDetailClick }) => {
           {isAvailable ? 'Доступна' : 'Выдана'}
         </span>
       </div>
+
       <div className="book-content">
         <h3 className="book-title">{title}</h3>
         <p className="book-author">{author}</p>
@@ -27,8 +29,15 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onDetailClick }) => {
           <span className="book-genre">{genre}</span>
         </div>
         <p className="book-description">{description}</p>
-        <Link to={`/books/${book.id}`} className="btn btn-primary btn-block">Подробнее</Link>
+        
+        <Link to={`/books/${book.id}`} 
+          className="btn btn-primary btn-block"
+          onClick={() => onDetailClick?.(book)}>
+          Подробнее
+        </Link>
       </div>
     </article>
   );
 };
+
+export default BookCard;
