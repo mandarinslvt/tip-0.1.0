@@ -11,9 +11,6 @@ interface ReaderProfilePageProps {
 
 const ReaderProfilePage = ({ reader: propReader }: ReaderProfilePageProps) => {
   const { id } = useParams<{ id: string }>();
-
-  // Если пропс передан (как в ProfileWrapper) — берем его. 
-  // Если нет — ищем в моках по id из URL строки браузера.
   const reader = propReader || mockReaders.find((r) => String(r.id) === id);
 
   if (!reader) {

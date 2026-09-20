@@ -13,6 +13,7 @@ const BookDetailInfo = ({ book }: BookDetailInfoProps) => {
         <p><strong>Год издания:</strong> {book.year} г.</p>
         <p><strong>Издательство:</strong> {book.publisher || 'Не указано'}</p>
         <p><strong>Количество страниц:</strong> {book.pages || '—'}</p>
+
       </div>
       <div className="book-detail-description">
         <h4>О книге</h4>
