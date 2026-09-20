@@ -1,0 +1,17 @@
+@media (max-width: 640px) {
+.profile {
+padding: 1.5rem;
+margin: 1rem;
+border-radius: 12px;
+} 
+
+.profile h1 {
+font-size: 1.75rem;
+margin-bottom: 1rem;
+padding-bottom: 0.75rem;
+} 
+
+.profile p {
+font-size: 0.95rem;
+}
+}

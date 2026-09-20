@@ -1,0 +1,26 @@
+.readers-page-title {
+font-size: 2.5rem;
+color: #1a1a1a;
+margin-bottom: 2rem;
+font-weight: 700;
+letter-spacing: -0.02em;
+}
+
+.readers-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+gap: 1.5rem;
+margin-top: 2rem;
+}
+
+@media (max-width: 640px) {
+.readers-page-title {
+font-size: 2rem;
+margin-bottom: 1.5rem;
+}
+
+.readers-grid {
+grid-template-columns: 1fr;
+gap: 1rem;
+}
+}
