@@ -3,6 +3,8 @@ import BookList from '../../components/books/BookList/BookList';
 import BookSearch from '../../components/books/BookSearch/BookSearch'; 
 import { mockBooks } from '../../mocks/books';
 import '../../pages/BooksPage/BooksPage.css';
+import '../NotFound/NotFound';
+import NotFound from '../NotFound/NotFound';
 
 const BooksPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -37,7 +39,11 @@ const BooksPage = () => {
       {filteredBooks.length > 0 ? (
         <BookList books={filteredBooks} />
       ) : (
-        <p className="no-results">По вашему запросу ничего не найдено.</p>
+        <NotFound 
+          title="Ничего не найдено" 
+          subtitle=""
+          message={`По запросу "${searchQuery}" не нашлось ни одной книги.`} 
+        />
       )}
     </div>
   );
