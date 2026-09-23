@@ -91,3 +91,13 @@
 .btn-outline:hover {
   background: #f5f5f5;
 }
+.form-group input.error {
+  border-color: #c62828;
+}
+
+.error-text {
+  color: #c62828;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
