@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import './BookAdd.css';
 import { useDispatch } from 'react-redux';
+import { addNewBook } from '../../../store/bookData';
+import './BookAdd.css';
 
 interface BookAddProps {
   isOpen: boolean;
@@ -8,6 +9,7 @@ interface BookAddProps {
 }
 
 const BookAdd = ({ isOpen, onClose }: BookAddProps) => {
+    const dispatch = useDispatch<any>(); // Добавили <any> для thunk-совместимости диспетчера в TS
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [genre, setGenre] = useState('');
@@ -16,20 +18,20 @@ const BookAdd = ({ isOpen, onClose }: BookAddProps) => {
     const [errors, setErrors] = useState<Record<string, string>>({});
     
     const validate = () => {
-        const newErrors: Record<string, string> = {};
+      const newErrors: Record<string, string> = {};
 
-    if (!title.trim()) {
-      newErrors.title = 'Название книги обязательно для заполнения';
-    }
-    if (!author.trim()) {
-      newErrors.author = 'Укажите автора книги';
-    }
-    if (year && (Number(year) < 0 || Number(year) > new Date().getFullYear())) {
-      newErrors.year = 'Укажите корректный год издания';
-    }
+      if (!title.trim()) {
+        newErrors.title = 'Название книги обязательно для заполнения';
+      }
+      if (!author.trim()) {
+        newErrors.author = 'Укажите автора книги';
+      }
+      if (year && (Number(year) < 0 || Number(year) > new Date().getFullYear())) {
+        newErrors.year = 'Укажите корректный год издания';
+      }
 
-    return newErrors;
-};
+      return newErrors;
+    };
 
   const handleClose = () => {
     setTitle('');
@@ -45,18 +47,22 @@ const BookAdd = ({ isOpen, onClose }: BookAddProps) => {
     
     const newErrors = validate();
     
+    // 2. ИСПРАВЛЕНО: Если есть ошибки, записываем их и ПРЕРЫВАЕМ функцию через return
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
 
-    console.log('Новая книга успешно добавлена в состояние:', {
+    // 3. ИСПРАВЛЕНО: Этот код выполнится, только если ошибок НЕТ. Отправляем асинхронный thunk
+    dispatch(addNewBook({
       title,
       author,
       genre,
       year: Number(year),
-    });
+      description: 'Добавлено асинхронно через REST API'
+    }));
 
+    console.log('Новая книга успешно отправлена на сервер');
     handleClose();
   };
 
