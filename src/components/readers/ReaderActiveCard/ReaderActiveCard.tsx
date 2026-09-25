@@ -6,8 +6,6 @@ interface ReaderCardProps {
 
 const ReaderActiveCard = ({ reader }: ReaderCardProps) => {
   const { fullName, email, phone, activeBooks } = reader;
-  
-  // Вычисляем статус читателя динамически (вместо хранения в интерфейсе)
   const hasActiveBooks = activeBooks.length > 0;
   const statusClass = hasActiveBooks ? 'badge-unavailable' : 'badge-available';
   const statusText = hasActiveBooks ? `Книг на руках: ${activeBooks.length}` : 'Нет книг на руках';

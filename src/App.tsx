@@ -3,11 +3,13 @@ import BooksPage from './pages/BooksPage/BooksPage';
 import ReadersPage from './pages/ReadersPage/ReadersPage';
 import ReaderProfilePage from './pages/ReaderProfilePage/ReaderProfilePage';
 import NavLink from './components/NavLink/NavLink';
+import BookDetailPage from './components/books/BookDetail/BookDetailPage';
+import NotFound from './pages/NotFound/NotFound';
+
 
 function App() {
   return (
     <BrowserRouter>
-    {/* маршрут */}
       <NavLink /> 
       
       <main className="container">
@@ -17,9 +19,11 @@ function App() {
           <Route path="/books" element={<BooksPage />} />
           <Route path="/readers" element={<ReadersPage />} />
           <Route path="/readers/:id" element={<ReaderProfilePage />} />
+          <Route path="/booksdetail" element={<BookDetailPage />} />
           
           {/* 404 */}
-          <Route path="*" element={<h2>Страница не найдена</h2>} />
+          {/* <Route path="/notfound" element={<NotFound />} /> */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
     </BrowserRouter>

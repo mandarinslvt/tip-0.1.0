@@ -1,10 +1,13 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { store } from './app/store.js';
+import './index.css';
 import App from './App';
-import './index.css'; // ваши глобальные стили
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+<Provider store={store}> {/* Делимся хранилищем со всеми */}
+  <App />
+  </Provider>
 );

@@ -1,8 +1,3 @@
-/* ============================================
-   BOOKS PAGE
-   ============================================ */
-
-/* Book Card */
 .book-card {
   background: var(--white);
   border-radius: var(--radius-lg);
