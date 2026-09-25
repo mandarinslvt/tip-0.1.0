@@ -1,13 +1,13 @@
 import { useParams, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import BookDetailInfo from '../../../components/books/BookDetail/BookDetail';
-import { mockBooks } from '../../../mocks/books';
+import { selectBookById } from '../../../store/bookData';
 import './BookDetail.css';
 
 const BookDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-
-  const book = mockBooks.find((b) => String(b.id) === id);
+  const book = useSelector((state: any) => selectBookById(state, id || ''));
 
   if (!book) {
     return (
