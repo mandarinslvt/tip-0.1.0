@@ -3,7 +3,6 @@ import BookList from '../../components/books/BookList/BookList';
 import BookSearch from '../../components/books/BookSearch/BookSearch'; 
 import { mockBooks } from '../../mocks/books';
 import '../../pages/BooksPage/BooksPage.css';
-import '../NotFound/NotFound';
 import NotFound from '../NotFound/NotFound';
 
 const BooksPage = () => {
