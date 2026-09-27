@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { mockReaders } from '../../mocks/readers';
-import ReaderCard from '../../components/readers/ReaderCard/ReaderCard';
+import { ReaderCard } from '../../components/readers/ReaderCard/ReaderCard';
 import './ReadersPage.css';
 
 const ReadersPage = () => {
