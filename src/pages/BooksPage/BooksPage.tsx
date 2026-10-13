@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchBooks, selectAllBooks, selectBooksStatus, selectBooksError } from '../../store/bookData';
+import { fetchBooks, selectAllBooks, selectBooksStatus, selectBooksError } from '../../features/books/booksSlice';
+import { mockBooks } from '../../mocks/books';
 import BookList from '../../components/books/BookList/BookList';
 import BookSearch from '../../components/books/BookSearch/BookSearch'; 
 import NotFound from '../NotFound/NotFound';

@@ -1,12 +1,14 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import BookDetailInfo from '../../../components/books/BookDetail/BookDetail';
-import { selectBookById } from '../../../store/bookData';
+import { selectBookById } from '../../../features/books/booksSlice';
 import './BookDetail.css';
 
 const BookDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  
+  // Правильное использование селектора внутри компонента
   const book = useSelector((state: any) => selectBookById(state, id || ''));
 
   if (!book) {

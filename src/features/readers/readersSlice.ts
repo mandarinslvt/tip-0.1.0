@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 import { fetchAllReaders } from '../../services/api';
 import type { IReader } from '../../types/reader.types';
 import type { RootState } from '../../app/store';
