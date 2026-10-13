@@ -30,7 +30,6 @@ const BooksPage = () => {
     );
   }, [books, searchQuery]);
 
-  // Обработка разных состояний загрузки API (Страница 12 конспекта)
   if (status === 'loading') {
     return <div style={{ textAlign: 'center', padding: '3rem' }}><h2>⏳ Загрузка каталога книг...</h2></div>;
   }
