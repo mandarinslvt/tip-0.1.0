@@ -1,15 +1,14 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
+import { bookDataService } from '../../store/bookData'; // Импортируем наш чистый сервис
+import { mockBooks } from '../../mocks/books'; 
 import type { IBook } from '../../types/book.types';
 
-const API_BASE_URL = 'https://typicode.com';
-
+// createAsyncThunk теперь вызывает функцию из bookData.ts
 export const fetchBooks = createAsyncThunk(
   'books/fetchAll',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get<IBook[]>(`${API_BASE_URL}/books`);
-      return response.data;
+      return await bookDataService.getAllBooks();
     } catch (error: any) {
       return rejectWithValue(error.response?.data || error.message);
     }
@@ -38,24 +37,19 @@ const booksSlice = createSlice({
       state.error = null;
     },
   },
-  
   extraReducers: (builder) => {
     builder
       .addCase(fetchBooks.pending, (state) => {
         state.status = 'loading';
         state.error = null;
-        console.log('⏳ Загрузка книг...');
       })
       .addCase(fetchBooks.fulfilled, (state, action: PayloadAction<IBook[]>) => {
         state.status = 'succeeded';
-        state.items = action.payload; // Заливаем полученные данные в стейт
-        console.log('Книги загружены:', action.payload.length);
+        state.items = action.payload;
       })
-     
       .addCase(fetchBooks.rejected, (state, action: PayloadAction<any>) => {
         state.status = 'failed';
         state.error = action.payload || 'Произошла ошибка загрузки';
-        console.log('❌ Ошибка загрузки книг:', state.error);
       });
   },
 });
@@ -65,5 +59,6 @@ export const selectBooksStatus = (state: { books: BooksState }) => state.books.s
 export const selectBooksError = (state: { books: BooksState }) => state.books.error;
 
 export const { clearBooks } = booksSlice.actions;
-export { fetchBooks };
 export default booksSlice.reducer;
+export const selectBookById = (state: any, bookId: string) => 
+  state.books.items.find((book: any) => String(book.id) === String(bookId));

@@ -1,5 +1,5 @@
 import type { IBook } from '../../../types/book.types'
-import BookCard from '../BookCard/BookCard'; 
+import { BookCard } from '../BookCard/BookCard'; 
 import './BookList.css';
 
 interface BookListProps { 

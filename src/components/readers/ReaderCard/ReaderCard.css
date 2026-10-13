@@ -1,0 +1,52 @@
+.reader-card {
+  border: 1px solid #e2e8f0;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+}
+
+.reader-card-avatar {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.reader-name {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  color: #1e293b;
+}
+
+.reader-info {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 1rem;
+}
+
+.reader-info p {
+  margin: 4px 0;
+}
+
+.reader-books-count {
+  margin: 8px 0 0 0 !important;
+  color: #1e88e5;
+  font-weight: 500;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background-color: #1e88e5;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #1565c0; /* Эффект потемнения кнопки при наведении */
+}

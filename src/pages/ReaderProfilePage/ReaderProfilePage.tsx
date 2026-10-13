@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { mockReaders } from '../../mocks/readers';
 import { mockBooks as initialBooks } from '../../mocks/books'; 
-import { BookBlock } from '../../components/readers/ReaderCard/ReaderCard'; 
 import ActiveBooksSection from '../../components/readers/ActiveBooks/ActiveBooks';
 import type { IBook } from '../../types/book.types';
 import type { IReader } from '../../types/reader.types';
+
+
 
 const ReaderProfilePage = () => {
   const { id } = useParams<{ id: string }>();
@@ -26,14 +27,15 @@ const ReaderProfilePage = () => {
 
     setReader(prevReader => {
       if (!prevReader) return prevReader;
-      return {
+      const updatedReader: any = {
         ...prevReader,
         activeBooks: [...prevReader.activeBooks, book.id],
         booksHistory: [
-          ...prevReader.booksHistory,
+          ...(prevReader.booksHistory || []),
           { bookId: book.id, takenAt: new Date() }
         ]
       };
+      return updatedReader as IReader;
     });
   };
 
@@ -44,19 +46,23 @@ const ReaderProfilePage = () => {
 
     setReader(prevReader => {
       if (!prevReader) return prevReader;
-      return {
+      const updatedReader: any = {
         ...prevReader,
-        activeBooks: prevReader.activeBooks.filter(id => id !== bookId),
-        booksHistory: prevReader.booksHistory.map(historyItem => 
-          historyItem.bookId === bookId && !historyItem.returnedAt 
+        activeBooks: prevReader.activeBooks.filter(id => String(id) !== String(bookId)),
+        booksHistory: (prevReader.booksHistory || []).map(historyItem => 
+          String(historyItem.bookId) === String(bookId) && !historyItem.returnedAt 
             ? { ...historyItem, returnedAt: new Date() } 
             : historyItem
         )
       };
+      return updatedReader as IReader;
     });
   };
 
-  const currentActiveBooks = books.filter(b => reader.activeBooks.includes(b.id));
+  // Безопасная фильтрация активных книг читателя
+  const currentActiveBooks = books.filter(b => 
+    reader.activeBooks.map(String).includes(String(b.id))
+  );
 
   return (
     <div className="reader-profile-page" style={{ padding: '20px' }}>
@@ -68,11 +74,6 @@ const ReaderProfilePage = () => {
       <ActiveBooksSection 
         activeBooks={currentActiveBooks} 
         onReturnBook={handleReturnBook} 
-      />
-
-      <BookBlock 
-        books={books} 
-        onIssueBook={handleIssueBook} 
       />
     </div>
   );
