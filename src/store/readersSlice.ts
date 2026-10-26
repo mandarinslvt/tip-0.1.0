@@ -1,9 +1,9 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 import { fetchAllReaders } from '../services/api';
 import type { IReader } from '../types/reader.types';
 
 interface ReadersState {
-  readers: IReader[];
+  readers: IReader[]; // Используем readers, как заложено в вашей структуре
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
 }
@@ -35,6 +35,17 @@ export const readersSlice = createSlice({
       state.status = 'idle';
       state.error = null;
     },
+    // ВСТАВЛЯЕМ СЮДА: Добавление нового читателя
+    addReader: (state, action: PayloadAction<IReader>) => {
+      state.readers.push(action.payload);
+    },
+    // ВСТАВЛЯЕМ СЮДА: Редактирование читателя
+    updateReader: (state, action: PayloadAction<IReader>) => {
+      const index = state.readers.findIndex(r => String(r.id) === String(action.payload.id));
+      if (index !== -1) {
+        state.readers[index] = action.payload;
+      }
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -53,8 +64,9 @@ export const readersSlice = createSlice({
   },
 });
 
+// Экспорт селекторов и экшенов
 export const selectAllReaders = (state: { readers: ReadersState }) => state.readers.readers;
 export const selectReadersStatus = (state: { readers: ReadersState }) => state.readers.status;
 
-export const { clearReaders } = readersSlice.actions;
+export const { addReader, updateReader, clearReaders } = readersSlice.actions;
 export default readersSlice.reducer;
