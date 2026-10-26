@@ -121,10 +121,10 @@ const ReaderProfilePage = () => {
         
         <input
           type="text"
+          className="issue-search-input"
           placeholder="Поиск доступной книги по названию или автору..."
           value={bookSearchQuery}
           onChange={(e) => setBookSearchQuery(e.target.value)}
-          style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1', marginBottom: '1rem', fontSize: '14px' }}
         />
 
         <div className="available-books-list">
