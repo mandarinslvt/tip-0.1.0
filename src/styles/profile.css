@@ -1,12 +1,36 @@
-/* ============================================
-   READER PROFILE PAGE
-   ============================================ */
+/* ==========================================================================
+   READER PROFILE PAGE (Профиль читателя)
+   ========================================================================== */
 
 .profile-wrapper {
   max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 0;
 }
 
-/* Profile Header */
+/* Кнопка «Назад» над профилем */
+.btn-back {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  transition: var(--transition);
+  padding: 6px 12px;
+  border-radius: var(--radius);
+}
+
+.btn-back:hover {
+  color: var(--accent);
+  background-color: var(--accent-bg);
+}
+
+/* Profile Header (Основная карточка пользователя) */
 .profile-header {
   display: flex;
   gap: 32px;
@@ -14,23 +38,25 @@
   background: var(--white);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
+  border: 1px solid var(--border);
   margin-bottom: 32px;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .profile-avatar {
   flex-shrink: 0;
-  width: 100px;
-  height: 100px;
-  background: var(--bg);
+  width: 90px;
+  height: 90px;
+  background: var(--code-bg);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid var(--border);
 }
 
 .profile-avatar-emoji {
-  font-size: 48px;
+  font-size: 40px;
 }
 
 .profile-info {
@@ -40,146 +66,185 @@
 .profile-name {
   font-size: 28px;
   font-weight: 700;
-  color: var(--primary);
-  margin-bottom: 12px;
+  color: var(--text-h);
+  margin: 0 0 12px 0;
+  line-height: 1.2;
 }
 
 .profile-details {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  font-size: 14px;
-  color: var(--text-light);
-  margin-bottom: 16px;
-}
-
-.profile-stats {
-  display: flex;
-  gap: 24px;
   font-size: 15px;
+  color: var(--text);
+  margin-bottom: 0;
 }
 
-/* Profile Sections */
+.profile-details p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Profile Sections (Разделы: Активные книги, Выдача, История) */
 .profile-section {
   background: var(--white);
   border-radius: var(--radius-lg);
-  padding: 24px 32px;
+  padding: 28px 32px;
   box-shadow: var(--shadow);
+  border: 1px solid var(--border);
   margin-bottom: 24px;
 }
 
 .profile-section-title {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
-  color: var(--primary);
-  margin-bottom: 16px;
+  color: var(--text-h);
+  margin: 0 0 20px 0;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
 }
 
-/* Active Books */
+/* Active Books (Книги на руках) */
 .active-books-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.active-book-item {
-  background: var(--bg);
-  padding: 8px 16px;
-  border-radius: var(--radius);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-}
-
-.active-book-author {
-  color: var(--text-light);
-  font-size: 13px;
-}
-
-/* History */
-.history-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.history-item {
+.active-book-item {
+  background: var(--code-bg);
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.active-book-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.active-book-title {
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.active-book-author {
+  color: var(--text);
+  font-size: 14px;
+}
+
+/* Кнопка возврата книги («Вернуть») */
+.btn-return {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-h);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-return:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #ef4444;
+}
+
+/* Issue Book Section (Блок интерактивной выдачи новой книги) */
+.issue-search-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 15px;
+  background: var(--bg);
+  color: var(--text-h);
+  transition: var(--transition);
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+.issue-search-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+.available-book-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 12px 0;
-  border-bottom: 1px solid var(--bg);
+  border-bottom: 1px solid var(--border);
 }
 
-.history-item:last-child {
+.available-book-row:last-child {
   border-bottom: none;
 }
 
-.history-book {
+/* Кнопка «Выдать» */
+.btn-issue {
+  padding: 6px 14px;
+  font-size: 13px;
   font-weight: 500;
-  color: var(--primary);
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition);
 }
 
-.history-date {
-  font-size: 14px;
-  color: var(--text-light);
+.btn-issue:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
+/* Profile Empty State Text */
 .profile-empty-text {
-  color: var(--text-light);
+  color: var(--text);
   font-style: italic;
+  font-size: 15px;
+  margin: 0;
 }
 
-/* Responsive */
+/* ==========================================================================
+   RESPONSIVE (Адаптивность)
+   ========================================================================== */
 @media (max-width: 768px) {
   .profile-header {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    padding: 24px;
+    gap: 20px;
   }
 
   .profile-details {
     justify-content: center;
   }
 
-  .profile-stats {
-    justify-content: center;
+  .active-book-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    text-align: left;
   }
 
-  .history-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
+  .btn-return {
+    width: 100%;
+  }
+
+  .profile-section {
+    padding: 20px;
   }
 }
-  .profile {
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-    border: 1px solid #e2e8f0;
-    padding: 2.5rem;
-  }
-  .profile h1 {
-    font-size: 2.25rem;
-    color: #1a1a1a;
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    border-bottom: 2px solid #f1f5f9;
-    padding-bottom: 1rem;
-  }
-  .profile p {
-    font-size: 1.05rem;
-    color: #475569;
-    margin: 0 0 1rem 0;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .profile 
-  p:last-child {
-    margin-bottom: 0;
-  }

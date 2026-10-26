@@ -1,28 +1,33 @@
-import { useState } from 'react';
-import { mockReaders } from '../../mocks/readers';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { selectAllReaders } from '../../features/readers/readersSlice';
 import { ReaderCard } from '../../components/readers/ReaderCard/ReaderCard';
-import './ReadersPage.css';
 
 const ReadersPage = () => {
-  const [readers] = useState(mockReaders);
+  const navigate = useNavigate();
+  
+  // Берем массив читателей из общего Redux-хранилища
+  const readers = useSelector(selectAllReaders);
 
   return (
-    <div className="readers-page">
-      <h1 className="page-title">Читатели библиотеки</h1>
-      <p className="page-subtitle">
-        Всего зарегистрировано: <strong>{readers.length}</strong>
-      </p>
+    <div className="readers-page" style={{ padding: '20px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <h1>Список читателей</h1>
+        {/* Кнопка перехода на форму регистрации */}
+        <button 
+          onClick={() => navigate('/readers/new')} 
+          style={{ padding: '10px 16px', backgroundColor: '#10b981', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 500 }}
+        >
+          ➕ Зарегистрировать читателя
+        </button>
+      </div>
 
-      {/* Сетка для карточек читателей */}
-      <div className="readers-grid">
+      <div className="readers-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px' }}>
         {readers.map((reader) => (
           <ReaderCard key={reader.id} reader={reader} />
         ))}
       </div>
-
-      {readers.length === 0 && (
-        <p className="no-results">В базе данных пока нет читателей.</p>
-      )}
     </div>
   );
 };
